@@ -11,8 +11,8 @@
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Create and account
                     </h1>
-                    <form action="#" method="POST" class="space-y-4 md:space-y-6">
-{{--                        {{ route('register.save') }}--}}
+                    <form action=" {{ route('register.save') }}" method="POST" class="space-y-4 md:space-y-6">
+
                         @csrf
                         <div>
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
