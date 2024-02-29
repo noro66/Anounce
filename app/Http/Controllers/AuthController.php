@@ -55,6 +55,13 @@ class AuthController extends Controller
             ]);
         };
 
+        $request->session()->regenerate();
+        if (auth()->user()->type === 'admin'){
+            return to_route('admin.home');
+        }else{
+            return to_route('home');
+        }
+
     }
 
     public function logout(Request $request)
