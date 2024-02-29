@@ -25,6 +25,7 @@ Route::controller(AuthController::class)->group(function (){
     Route::get('login', 'login')->name('login');
     Route::post('login', 'loginAction')->name('login.action');
 
+    Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });
 
 Route::get('/home',[HomeController::class, 'index'])->name('home');

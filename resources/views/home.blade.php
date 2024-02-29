@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Register')
+@section('title', 'home')
 @section('content')
 <h2>hello world</h2>
 
