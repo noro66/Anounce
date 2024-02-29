@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AnnounceRequest;
 use App\Models\Announce;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnnounceController extends Controller
 {
@@ -27,9 +29,14 @@ class AnnounceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AnnounceRequest $request)
     {
-        //
+
+        $AnnounceForm = $request->validated();
+        $AnnounceForm['image']  = $request->file('image')->store('Announces', 'public');
+        $AnnounceForm['user_id'] = Auth::id();
+        Announce::create($AnnounceForm);
+        return to_route('announce.index');
     }
 
     /**

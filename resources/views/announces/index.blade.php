@@ -15,6 +15,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">#</th>
+                <th scope="col" class="px-6 py-3">Image</th>
                 <th scope="col" class="px-6 py-3">Title</th>
                 <th scope="col" class="px-6 py-3">Price</th>
                 <th scope="col" class="px-6 py-3">type</th>
@@ -30,8 +31,11 @@
                             {{ $loop->iteration }}
                         </th>
                         <td>
-                            {{ $rs->image }}
+                            <div class="w-24 h-24">
+                                <img class="object-cover w-full h-full" src="{{ asset('storage/' . $rs->image ) }}" alt="receipt image">
+                            </div>
                         </td>
+
                         <td>
                             {{ $rs->title }}
                         </td>
@@ -49,9 +53,9 @@
                         </td>
                         <td class="w-36">
                             <div class="h-14 pt-5">
-                                <a href="{{ route('admin/products/show', $rs->id) }}" class="text-blue-800">Detail</a> |
-                                <a href="{{ route('admin/products/edit', $rs->id)}}" class="text-green-800 pl-2">Edit</a> |
-                                <form action="{{ route('admin/products/destroy', $rs->id) }}" method="POST" onsubmit="return confirm('Delete?')" class="float-right text-red-800">
+                                <a href="{{ route('announce.show', $rs->id) }}" class="text-blue-800">Detail</a> |
+                                <a href="{{ route('announce.edit', $rs->id)}}" class="text-green-800 pl-2">Edit</a> |
+                                <form action="{{ route('announce.destroy', $rs->id) }}" method="POST" onsubmit="return confirm('Delete?')" class="float-right text-red-800">
                                     @csrf
                                     @method('DELETE')
                                     <button>Delete</button>

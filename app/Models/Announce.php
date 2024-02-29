@@ -13,6 +13,7 @@ class Announce extends Model
         'description',
         'type',
         'reservation_type',
-        'image'
+        'image',
+        'user_id'
     ];
 }
