@@ -32,7 +32,7 @@
                             {{ $loop->iteration }}
                         </th>
                         <td>
-                            <div class="w-24 h-24">
+                            <div class="w-16 h-16">
                                 <img class="object-cover w-full h-full" src="{{ asset('storage/' . $rs->image ) }}" alt="receipt image">
                             </div>
                         </td>
@@ -41,7 +41,7 @@
                             {{ $rs->title }}
                         </td>
                         <td>
-                            {{ $rs->description}}
+                            {{Str::limit($rs->description, 20)}}
                         </td>
                         <td>
                             {{ $rs->price }}

@@ -8,20 +8,14 @@
 
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-700">Title:</label>
-                <input type="text" id="title" name="title" value="{{ old('title') }}" class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <input type="text" id="title" name="title" placeholder="Title" value="{{ old('title') }}" class="mt-1 px-6 py-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 @error('title') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
             <div class="mb-4">
                 <label for="description" class="block text-sm font-medium text-gray-700">Description:</label>
-                <textarea id="description" name="description" rows="3" class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ old('description') }}</textarea>
+                <textarea id="description" name="description" placeholder="Description" rows="3" class="mt-1 px-6 py-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ old('description') }}</textarea>
                 @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
-            </div>
-
-            <div class="mb-4">
-                <label for="price" class="block text-sm font-medium text-gray-700">Price:</label>
-                <input type="number" id="price" name="price" value="{{ old('price') }}" class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                @error('price') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
             <div class="mb-4">
@@ -47,8 +41,14 @@
             </div>
 
             <div class="mb-4">
+                <label for="price" class="block text-sm font-medium text-gray-700">Price:</label>
+                <input type="number" id="price" name="price" placeholder="*****DH" value="{{ old('price') }}" class="mt-1 p-2 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                @error('price') <span class="text-red-500">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="mb-4">
                 <label for="image" class="block text-sm font-medium text-gray-700">Image:</label>
-                <input type="file" id="image" name="image" class="mt-1 block w-full">
+                <input type="file" id="image"  name="image" class="mt-1 block w-full">
                 @error('image') <span class="text-red-500">{{ $message }}</span> @enderror
             </div>
 
