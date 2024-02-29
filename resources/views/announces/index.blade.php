@@ -17,6 +17,7 @@
                 <th scope="col" class="px-6 py-3">#</th>
                 <th scope="col" class="px-6 py-3">Image</th>
                 <th scope="col" class="px-6 py-3">Title</th>
+                <th scope="col" class="px-6 py-3">Description</th>
                 <th scope="col" class="px-6 py-3">Price</th>
                 <th scope="col" class="px-6 py-3">type</th>
                 <th scope="col" class="px-6 py-3">reservation_type</th>
@@ -40,6 +41,9 @@
                             {{ $rs->title }}
                         </td>
                         <td>
+                            {{ $rs->description}}
+                        </td>
+                        <td>
                             {{ $rs->price }}
                         </td>
                         <td>
@@ -47,9 +51,6 @@
                         </td>
                         <td>
                             {{ $rs->reservation_type}}
-                        </td>
-                        <td>
-                            {{ $rs->description}}
                         </td>
                         <td class="w-36">
                             <div class="h-14 pt-5">

@@ -14,6 +14,7 @@ class Announce extends Model
         'type',
         'reservation_type',
         'image',
-        'user_id'
+        'user_id',
+        'price'
     ];
 }

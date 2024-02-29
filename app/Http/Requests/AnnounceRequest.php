@@ -25,6 +25,7 @@ class AnnounceRequest extends FormRequest
         return [
             'title' => 'required|min:5|max:125',
             'description' => 'required|min:20',
+            'price' => 'required',
             'type' => ['required', 'in:room,house,villa,farm'], // Validate 'type' enum
             'reservation_type' => ['required', 'in:rent,sell'],
             'image' => 'image|mimes:png,jpg,jpeg,svg|max:10240'
