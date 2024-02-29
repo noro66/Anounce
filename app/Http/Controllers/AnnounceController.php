@@ -50,24 +50,41 @@ class AnnounceController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Announce $announce)
     {
-        //
+        return view('announces.edit', compact('announce'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AnnounceRequest $request, Announce $announce)
     {
-        //
+        if (Auth::id() === $announce->user_id){
+        $AnnounceForm = $request->validated();
+        if ($request->hasFile('image')){
+            $AnnounceForm['image']  = $request->file('image')->store('Announces', 'public');
+        }else{
+            unset($AnnounceForm['image']);
+        }
+
+            $announce->fill($AnnounceForm)->save();
+        return to_route('announce.index')->with('success', 'Announce updated successfully !' );
+        }else{
+            return to_route('/')->with('error', 'you dont have the ability to edit this announce');
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Announce $announce)
     {
-        //
+        if (Auth::id() === $announce->user_id) {
+            $announce->delete();
+            return to_route('announce.index')->with('success', 'announce deleted successfully');
+        }else{
+            return to_route('/')->with('error', 'you have dont the ability to delete this announce');
+        }
     }
 }
