@@ -42,5 +42,7 @@ Route::middleware(['auth', 'user-access:appropriater'])
     ->group( function (){
         Route::get('appropriater', [HomeController::class, 'appropriaterHome'])->name('apropriater.dashboard');
         Route::get('apropriater/profile', [AppropriaterController::class, 'profilePage'])->name('apropriater.profile');
-        Route::get('apropriater/announce', [AnnounceController::class, 'index'])->name('apropriater.announce');
-});
+//        Route::get('apropriater/announce', [AnnounceController::class, 'index'])->name('apropriater.announce');
+        Route::resource('announce', AnnounceController::class);
+
+    });
