@@ -60,8 +60,8 @@ class AuthController extends Controller
         };
 
         $request->session()->regenerate();
-        if (auth()->user()->type === 'admin'){
-            return to_route('admin.dashboard');
+        if (auth()->user()->type === 'appropriater'){
+            return to_route('apropriater.dashboard');
         }else{
             return to_route('home');
         }

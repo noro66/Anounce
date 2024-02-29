@@ -11,7 +11,7 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function adminHome()
+    public function appropriaterHome()
     {
         return view('admin.dashboard');
     }

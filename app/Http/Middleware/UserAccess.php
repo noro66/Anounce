@@ -18,6 +18,6 @@ class UserAccess
         if (auth()->user()->type == $userType){
             return $next($request);
         }
-        return  response()->json(['You dont have permission to access for thia page']);
+        return  response()->json(['You dont have permission to access for thia page', auth()->user()->type]);
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AnnounceController;
+use App\Http\Controllers\AppropriaterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +38,9 @@ Route::middleware(['auth', 'user-access:user'])
 });
 
 //middleware for normal Admin
-Route::middleware(['auth', 'user-access:admin'])
+Route::middleware(['auth', 'user-access:appropriater'])
     ->group( function (){
-        Route::get('admin', [HomeController::class, 'adminHome'])->name('admin.dashboard');
+        Route::get('appropriater', [HomeController::class, 'appropriaterHome'])->name('apropriater.dashboard');
+        Route::get('apropriater/profile', [AppropriaterController::class, 'profilePage'])->name('apropriater.profile');
+        Route::get('apropriater/announce', [AnnounceController::class, 'index'])->name('apropriater.announce');
 });
