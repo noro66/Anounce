@@ -28,4 +28,14 @@ Route::controller(AuthController::class)->group(function (){
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });
 
-Route::get('/home',[HomeController::class, 'index'])->name('home');
+//middleware for normal user
+Route::middleware(['auth', 'user-access:user'])
+    ->group( function (){
+        Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+
+//middleware for normal Admin
+Route::middleware(['auth', 'user-access:admin'])
+    ->group( function (){
+        Route::get('admin', [HomeController::class, 'adminHome'])->name('admin.dashboard');
+});
