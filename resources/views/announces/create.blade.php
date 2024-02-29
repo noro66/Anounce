@@ -1,7 +1,10 @@
 @extends('layout')
 @section('title', 'Announce')
 @section('content')
-    <h3 class="my-10 text-center text-3xl text-gray-900">Create An Announce</h3>
+    <div class="flex  items-center justify-evenly">
+        <h1 class="text-2xl font-bold mb-4">Create Announce :   </h1>
+        <a href="{{route('announce.index')}}" class=" block  px-8 rounded bg-blue-600 text-white py-2 s" >Back</a>
+    </div>
     <div class="w-lg flex flex-col items-center justify-center">
         <form action="{{ route('announce.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
