@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Announce;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -19,9 +20,10 @@ class ReservationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Announce $announce)
+    public function create(Request $request)
     {
-        dd($announce);
+        $announce = $request->input('announce_id');
+        return view('reservation.create', compact('announce'));
     }
 
     /**
@@ -29,7 +31,12 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ReservationForm['user_id'] = Auth::id();
+        $ReservationForm['announce_id'] = $request->input('announce_id');
+
+//       dd($ReservationForm);
+       $re = Reservation::create($ReservationForm);
+        return to_route('home')->with('success', 'Reservation added successfully !' );
     }
 
     /**

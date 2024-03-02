@@ -16,7 +16,11 @@
                         <p class="text-gray-700">Type: {{ $announce->type }}</p>
                         <p class="text-gray-700 font-bold">Price: {{ $announce->price }}</p>
                     </div>
-                    <a href="{{route('reservation.create', $announce->id)}}">   <button  class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Reserve Now</button></a>
+                    <form action="{{route('reservation.create')}}" method="get">
+                        @csrf
+                        <input type="hidden" name="announce_id" value="{{ $announce->id }}">
+                        <button type="submit"  class="mt-4 w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Reserve Now</button></a>
+                    </form>
                 </div>
             </div>
         @endforeach
