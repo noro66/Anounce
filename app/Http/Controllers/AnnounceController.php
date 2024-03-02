@@ -36,7 +36,7 @@ class AnnounceController extends Controller
         $AnnounceForm['image']  = $request->file('image')->store('Announces', 'public');
         $AnnounceForm['user_id'] = Auth::id();
         Announce::create($AnnounceForm);
-        return to_route('announce.index')->with('success', 'Announce added successfully !' );
+        return to_route('admin.dashboard')->with('success', 'Announce added successfully !' );
     }
 
     /**

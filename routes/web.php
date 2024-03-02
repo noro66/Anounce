@@ -5,6 +5,7 @@ use App\Http\Controllers\AnnounceController;
 use App\Http\Controllers\AppropriaterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,15 +35,19 @@ Route::controller(AuthController::class)->group(function (){
 //middleware for normal user
 Route::middleware(['auth', 'user-access:user'])
     ->group( function (){
-        Route::get('/home', [HomeController::class, 'index'])->name('home');
+        Route::get('/home', [AnnounceController::class, 'index'])->name('home');
+        Route::resource('reservation', ReservationController::class);
 });
 
 //middleware for normal Admin
 Route::middleware(['auth', 'user-access:appropriater'])
     ->group( function (){
-        Route::get('appropriater', [HomeController::class, 'appropriaterHome'])->name('apropriater.dashboard');
+        Route::get('appropriater', [AppropriaterController::class, 'appropriaterDashboard'])->name('appropriate.dashboard');
         Route::get('apropriater/profile', [AppropriaterController::class, 'profilePage'])->name('apropriater.profile');
 //        Route::get('apropriater/announce', [AnnounceController::class, 'index'])->name('apropriater.announce');
         Route::resource('announce', AnnounceController::class);
 
     });
+
+// web.php
+Route::get('/announcements',[ AnnounceController::class, 'index'])->name('announcements.index');

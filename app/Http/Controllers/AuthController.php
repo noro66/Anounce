@@ -61,7 +61,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
         if (auth()->user()->type === 'appropriater'){
-            return to_route('apropriater.dashboard');
+            return to_route('appropriate.dashboard');
         }else{
             return to_route('home');
         }

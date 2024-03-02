@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('announces', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->integer('price');
-            $table->enum('type', ['room', 'house', 'villa', 'farm']);
-            $table->enum('reservation_type', ['rent', 'sell']);
-            $table->string('image')->nullable();
             $table->softDeletes();
+            $table->foreignId('user_id')->references('id')->on('users')
+                ->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('announce_id')->references('id')->on('announces')
+                ->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('announces');
+        Schema::dropIfExists('reservations');
     }
 };
