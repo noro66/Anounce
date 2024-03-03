@@ -23,4 +23,9 @@ class Announce extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function announces()
+    {
+        return $this->hasOne(Announce::class);
+    }
 }

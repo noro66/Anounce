@@ -37,6 +37,7 @@ Route::middleware(['auth', 'user-access:user'])
     ->group( function (){
         Route::get('/home', [AnnounceController::class, 'index'])->name('home');
         Route::resource('reservation', ReservationController::class);
+        Route::get('/profile' ,[ReservationController::class, 'index'])->name('profile');
 });
 
 //middleware for normal Admin

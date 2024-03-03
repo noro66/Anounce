@@ -14,4 +14,14 @@ class Reservation extends Model
         'user_id',
         'announce_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function announces()
+    {
+        return $this->belongsTo(Announce::class, 'announce_id');
+    }
 }

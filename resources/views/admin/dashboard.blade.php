@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Reservation')
+@section('title', 'Dashboard')
 @section('content')
 {{--        @dd($announces->title)--}}
     <div class="flex justify-between pr-6">
