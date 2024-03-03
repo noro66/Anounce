@@ -3,7 +3,21 @@
 @section('content')
     <!-- announcements/cards.blade.php -->
 <x-nav-component/>
-        <div class="container m-auto p-4">
+
+
+
+
+    <div class="container m-auto p-4">
+        <div class="mx-auto max-w-md my-6">
+            <form action="{{ route('announces.search') }}" method="GET" class="flex items-center justify-center">
+                @csrf
+                <label>
+                    <input type="text" name="query" placeholder="Search Announces" class="px-4 py-2 border-2 border-gray-200 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </label>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-r-md">Search</button>
+            </form>
+        </div>
+
     <div class="grid grid-cols-3 gap-8">
 
         @foreach($announces as $announce)

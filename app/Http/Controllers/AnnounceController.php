@@ -16,6 +16,19 @@ class AnnounceController extends Controller
     {
         $announces = Announce::all();
         return view('announces.index', compact('announces'));
+
+    }
+
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $announces = Announce::where('title', 'like', "%$query%")
+            ->orWhere('description', 'like', "%$query%")
+            ->get();
+
+        return view('announces.index', compact('announces'));
     }
 
     /**
