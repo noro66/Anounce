@@ -9,7 +9,7 @@
             <form action="{{ route('reservation.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
-                    <label for="message" class="block text-gray-700 font-bold mb-2">Confirmation Message:</label>
+                    <label for="message" class="block text-gray-700 font-bold mb-2">Confirmation Message: (Optional)</label>
                     <textarea id="message" name="message" rows="4" class="form-textarea border border-gray-300 rounded-md w-full px-4 py-2 focus:outline-none focus:border-blue-500" placeholder="Enter your message">
                     </textarea>
                 </div>
