@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Announce;
 use App\Models\Reservation;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -69,6 +70,18 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
-        //
+        if($reservation->user_id === Auth::id()){
+            $createdAt = $reservation->created_at;
+            $currentTime = Carbon::now();
+            $diff = $currentTime->diffInHours($createdAt);
+            if ($diff < 2){
+                $reservation->delete();
+                to_route('profile');
+            }else{
+                return to_route('profile')->with('error', 'You cant cancel the reservation because you passed the limit time ...');
+            }
+        }else{
+            return to_route('profile')->with('error', 'You dont have the ability to cancel the reservation ...');
+        }
     }
 }

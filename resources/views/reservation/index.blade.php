@@ -28,6 +28,10 @@
                 <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
                     {{ Session::get('success') }}
                 </div>
+            @elseif(Session::has('error'))
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                    {{ Session::get('error') }}
+                </div>
             @endif
                 @if($reservations->count() > 0)
                     @foreach($reservations as $rs)
@@ -37,9 +41,10 @@
                             <p class="text-gray-700 mb-2"><span class="font-semibold">Reservaiton ID:</span> [{{$rs->id}}]</p>
                             <p class="text-gray-700 mb-2"><span class="font-semibold">Announce  Title :   </span>{{$rs->announces->title}}</p>
                             <p class="text-gray-700 mb-4"><span class="font-semibold">Created At:</span> {{$rs->created_at}}</p>
-                            <form action="/cancel-reservation" method="POST">
+                            <form action="{{route('reservation.destroy', $rs->id)}}" method="POST">
                                 @csrf
-                                <input type="hidden" name="reservation_id" value="[Reservation ID]">
+                                @method('delete')
+                                <input type="hidden" name="reservation_id" value="{{$rs->id}}">
                                 <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Cancel Reservation</button>
                             </form>
                         </div>
@@ -50,8 +55,6 @@
                         <td class="text-center" colspan="5">Announce not found</td>
                     </tr>
                 @endif
-                </tbody>
-            </table>
         </div>
     </div>
 @endsection
