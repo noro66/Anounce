@@ -1,6 +1,11 @@
+@php
+    $timeCalcService = app()->make(\App\Services\TimeCalcService::class);
+@endphp
+
 @extends('layout')
 @section('title', 'Reservation Dashboard')
 @section('content')
+
     {{--        @dd($announces->title)--}}
     <div class="flex justify-between pr-6">
         <div class="bg-gray-900 text-white h-screen p-5 pt-8 w-72">
@@ -41,12 +46,14 @@
                             <p class="text-gray-700 mb-2"><span class="font-semibold">Reservaiton ID:</span> [{{$rs->id}}]</p>
                             <p class="text-gray-700 mb-2"><span class="font-semibold">Announce  Title :   </span>{{$rs->announces->title}}</p>
                             <p class="text-gray-700 mb-4"><span class="font-semibold">Created At:</span> {{$rs->created_at}}</p>
+                            @if($timeCalcService->comparate($rs->created_at) < 2)
                             <form action="{{route('reservation.destroy', $rs->id)}}" method="POST">
                                 @csrf
                                 @method('delete')
                                 <input type="hidden" name="reservation_id" value="{{$rs->id}}">
                                 <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Cancel Reservation</button>
                             </form>
+                            @endif
                         </div>
                     </div>
                     @endforeach

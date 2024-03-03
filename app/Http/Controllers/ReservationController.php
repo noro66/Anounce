@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Announce;
 use App\Models\Reservation;
+use App\Services\TimeCalcService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,8 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations = Auth::user()->reservation;
+
+
         return view('reservation.index', compact('reservations'));
     }
 
@@ -68,13 +71,11 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Reservation $reservation)
+    public function destroy(Reservation $reservation, TimeCalcService $timeCalcService)
     {
         if($reservation->user_id === Auth::id()){
-            $createdAt = $reservation->created_at;
-            $currentTime = Carbon::now();
-            $diff = $currentTime->diffInHours($createdAt);
-            if ($diff < 2){
+
+            if ($timeCalcService->comparate($reservation->created_at) < 2){
                 $reservation->delete();
                 to_route('profile');
             }else{
@@ -84,4 +85,6 @@ class ReservationController extends Controller
             return to_route('profile')->with('error', 'You dont have the ability to cancel the reservation ...');
         }
     }
+
+
 }
